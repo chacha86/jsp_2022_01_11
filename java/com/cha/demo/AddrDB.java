@@ -53,8 +53,7 @@ public class AddrDB {
 			// sql 전달 결과 ResultSet 반환.
 			ResultSet rs = stmt.executeQuery(sql);
 			
-			// 즈소록 데이터를 구조화한 후에
-
+			// 주소록 데이터를 구조화한 후에
 			// ArrayList 담아서 사용.
 			while(rs.next()) {							
 				int idx = rs.getInt("idx"); // 현재 가리키는 행의 idx 컬럼값을 int 반환
