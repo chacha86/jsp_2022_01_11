@@ -24,7 +24,7 @@
     // <%= : 표현식이라고 부르며 자바 변수나 값을 출력할 때 out.println()을 사용하지 않고 바로 출력 가능
     for(int dan = n; dan <= m; dan++) {
         for(int i = 1; i <= limit; i++) { %>
-            <% out.println(dan); %> X <%= i %> = <%= dan * i %> <br /> 	  
+            <%= dan %> X <%= i %> = <%= dan * i %> <br /> 	  
         <% }
     }
 %>
