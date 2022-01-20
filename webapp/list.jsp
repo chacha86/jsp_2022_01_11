@@ -3,6 +3,8 @@
 <%@ page import="com.cha.demo.AddrDB" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.cha.demo.Addr" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,22 +13,14 @@
 </head>
 <body>
 <h1>주소 목록</h1>
-<%  
-    ArrayList<Addr> addrList = (ArrayList<Addr>)request.getAttribute("addrList");
-    
-    for(Addr addr : addrList) { 
-    %>
-        <div>
-            번호 : <%= addr.getIdx() %> <br/>
-            이름 : <%= addr.getName() %><br/> 
-            주소 : <%= addr.getAddress() %><br/>
-            전화번호 : <%= addr.getPhone() %><br/>
-        </div>
-        <hr>
-    <% } %>
+<c:forEach items="${addrList}" var="addr">
+    <div>
+        번호 : ${ addr.idx } <br/>
+        이름 : ${ addr.name }<br/> 
+        주소 : ${ addr.address }<br/>
+        전화번호 : ${ addr.phone }<br/>
+    </div>
     <hr>
-    ${ num } <br />
-    ${ str } <br />
-    
+</c:forEach>
 </body>
 </html>
