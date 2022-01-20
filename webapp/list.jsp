@@ -11,12 +11,10 @@
 </head>
 <body>
 <h1>주소 목록</h1>
-<%    
-    AddrDB db = new AddrDB();
-    ArrayList<Addr> addrList = db.selectDatas();
+<%  
+    ArrayList<Addr> addrList = (ArrayList<Addr>)request.getAttribute("addrList");
     
-    for(int i = 0; i < addrList.size(); i++) { 
-        Addr addr = addrList.get(i);
+    for(Addr addr : addrList) { 
     %>
         <div>
             번호 : <%= addr.getIdx() %> <br/>
@@ -26,6 +24,9 @@
         </div>
         <hr>
     <% } %>
+    <hr>
+    ${ num } <br />
+    ${ str } <br />
     
 </body>
 </html>

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,32 +26,45 @@ public class AddressServlet extends HttpServlet {
 		
 		// 주소록 조회
 		AddrDB db = new AddrDB();
-		ArrayList<Addr> addrList = db.selectDatas();
-		
-		out.println("<!DOCTYPE html>");
-		out.println("<html>");
-		out.println("<head>");
-		out.println("<meta charset=\"UTF-8\">");
-		out.println("<title>주소 목록</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("	<h1>주소 목록</h1>");
+		ArrayList<Addr> addrList = db.selectDatas(); // 목적데이터
 		
 		
-		for(int i = 0; i < addrList.size(); i++) {
-			Addr addr = addrList.get(i);
-			out.println("	<div>");
-			out.println("		번호 : " + addr.getIdx() + " <br />");
-			out.println("		이름 : " + addr.getName() + " <br />");
-			out.println("		주소 : " + addr.getAddress() + " <br />");
-			out.println("		번호 : " + addr.getPhone() + " <br />");
-			out.println("	</div>");
-			out.println("	<hr>");
-		}
+		// request 객체에 필요한 정보 저장
+		request.setAttribute("addrList", addrList);
+		request.setAttribute("num", 123);
+		request.setAttribute("str", "hello");
 		
-		out.println("</body>");
-		out.println("</html>");
+		// request 객체를 다른 서블릿으로 넘긴다 -> 포워딩 
+		// 서버 루트 경로 --> / (webapp)
+		RequestDispatcher rd = request.getRequestDispatcher("/list.jsp"); //list.jsp로 포워딩하겠다.
+		rd.forward(request, response); // list.jsp로 두객체가 넘어간다.
 		
+		
+		
+//		out.println("<!DOCTYPE html>");
+//		out.println("<html>");
+//		out.println("<head>");
+//		out.println("<meta charset=\"UTF-8\">");
+//		out.println("<title>주소 목록</title>");
+//		out.println("</head>");
+//		out.println("<body>");
+//		out.println("	<h1>주소 목록</h1>");
+//		
+//		
+//		for(int i = 0; i < addrList.size(); i++) {
+//			Addr addr = addrList.get(i);
+//			out.println("	<div>");
+//			out.println("		번호 : " + addr.getIdx() + " <br />");
+//			out.println("		이름 : " + addr.getName() + " <br />");
+//			out.println("		주소 : " + addr.getAddress() + " <br />");
+//			out.println("		번호 : " + addr.getPhone() + " <br />");
+//			out.println("	</div>");
+//			out.println("	<hr>");
+//		}
+//		
+//		out.println("</body>");
+//		out.println("</html>");
+//		
 		
 	}
 
