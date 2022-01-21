@@ -74,10 +74,9 @@ public class AddrDB {
 	}
 
 	// 데이터를 DB에 저장하는 메서드
-	public void insertData() {
+	public void insertData(String name, String address, String phone) {
 
-		String sql = "INSERT INTO addr SET `name` = '홍길동', address = '서울', phone = '010-9999-8888'";
-
+		String sql = String.format("INSERT INTO addr SET `name` = '%s', address = '%s', phone = '%s'", name, address, phone);
 		Connection conn = getConnection();
 
 		// Statement -> sql을 넘겨주고 결과 받아오는 역할
